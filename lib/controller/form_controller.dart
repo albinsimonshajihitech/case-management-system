@@ -8,12 +8,12 @@ import '../model/form.dart';
 class FormController {
 
   // Google App Script Web URL.
-  static String url = ('https://script.google.com/macros/s/AKfycbydQomCMstV6fNDhL5-NjJdxdCJrzefnEI39IPbyS3LiotBNNTHGT0AGcmH3ST8XQr9/exec');
+  static String url = "script.google.com/macros/s/AKfycbydQomCMstV6fNDhL5-NjJdxdCJrzefnEI39IPbyS3LiotBNNTHGT0AGcmH3ST8XQr9/exec";
 
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
 
-  String? get body => null;
+  String? get body => '';
 
   /// Async function which saves feedback, parses [feedbackForm] parameters
   /// and sends HTTP GET request on [URL]. On successful response, [callback] is called.

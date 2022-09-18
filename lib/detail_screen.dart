@@ -99,10 +99,11 @@ class _LoginScreenState extends State<DetailScreen> {
                       TextFormField(
                         controller: emailController,
                         validator: (value) {
-                          if (value!.contains("@")) {
-                            return 'Enter Valid Email';
+                          Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                          RegExp regex = RegExp(pattern.toString());
+                          if (!(regex.hasMatch(value!))) {
+                            return null;
                           }
-                          return null;
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<DetailScreen> {
             ElevatedButton(
               onPressed: () { _submitForm(); },
               child: const Text('Submit Feedback'),
-              style: ElevatedButton.styleFrom(primary: const Color(0x00000000)),
+              style: ElevatedButton.styleFrom(primary: const Color(0x00ffffff)),
             ),
           ],
         ),
