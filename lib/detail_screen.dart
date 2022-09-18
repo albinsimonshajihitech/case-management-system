@@ -1,10 +1,12 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'controller/form_controller.dart';
 import 'model/form.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({required Key abc, required this.caseapp}) : super(key: abc);
+  const DetailScreen({Key? key, required this.caseapp}) : super(key: key);
 
   final String caseapp;
 
