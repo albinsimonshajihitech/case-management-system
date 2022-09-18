@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 email: emailLogin.text, password: passwordLogin.text);
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) => DetailScreen(abc: abc, caseapp: caseapp)));
+                    builder: (context) => const DetailScreen()));
           } catch (e) {
             if (kDebugMode) {
               print(e);

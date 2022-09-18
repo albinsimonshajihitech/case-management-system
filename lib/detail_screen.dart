@@ -6,15 +6,13 @@ import 'controller/form_controller.dart';
 import 'model/form.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key, required this.caseapp}) : super(key: key);
-
-  final String caseapp;
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _MyHomePageState extends State<DetailScreen> {
+class _LoginScreenState extends State<DetailScreen> {
 
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
@@ -73,7 +71,7 @@ class _MyHomePageState extends State<DetailScreen> {
     return Scaffold(
       key: _scaffoldKey, resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(widget.caseapp),
+        //title: Text(widget.caseapp),
       ),
       body: Center(
         child: Column(
