@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../model/form.dart';
 
@@ -10,7 +11,7 @@ class FormController {
   static String url = ('https://script.google.com/macros/s/AKfycbydQomCMstV6fNDhL5-NjJdxdCJrzefnEI39IPbyS3LiotBNNTHGT0AGcmH3ST8XQr9/exec');
 
   // Success Status Message
-  static const status_success = "SUCCESS";
+  static const STATUS_SUCCESS = "SUCCESS";
 
   String? get body => null;
 
@@ -30,7 +31,9 @@ class FormController {
         }
       });
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

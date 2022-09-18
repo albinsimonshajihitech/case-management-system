@@ -1,3 +1,4 @@
+import 'package:case_management_system/detail_screen.dart';
 import 'package:case_management_system/forget_screen.dart';
 import 'package:case_management_system/sign_up_screen.dart';
 import 'package:case_management_system/utilities/constants.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'detailscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -98,14 +98,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildForgotPasswordBtn() {
     return Container(
       alignment: Alignment.centerRight,
-      child: FlatButton (
+      child: TextButton (
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ForgetScreen()),
           );
         },
-        padding: const EdgeInsets.only(right: 0.0),
+        //padding: const EdgeInsets.only(right: 0.0),
         child: const Text(
           'Forgot Password?',
           style: kLabelStyle,
@@ -150,12 +150,11 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () async {
           try {
-            // ignore: non_constant_identifier_names
             final User = await auth.signInWithEmailAndPassword(
                 email: emailLogin.text, password: passwordLogin.text);
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) => const detail_screen(title: '',)));
+                    builder: (context) => DetailScreen(key: , detail: '')));
           } catch (e) {
             if (kDebugMode) {
               print(e);

@@ -1,17 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'controller/form_controller.dart';
 import 'model/form.dart';
 
-class detail_screen extends StatefulWidget {
-  const detail_screen({Key? key, required this.title}) : super(key: key);
+class DetailScreen extends StatefulWidget {
+  const DetailScreen({required Key key, required this.detail}) : super(key: key);
 
-  final String title;
+  final String detail;
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _LoginScreenState extends State<detail_screen> {
+class _MyHomePageState extends State<DetailScreen> {
 
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
@@ -41,35 +42,36 @@ class _LoginScreenState extends State<detail_screen> {
 
       FormController formController = FormController();
 
-      snack("Submitting Feedback");
+      _showSnackbar("Submitting Feedback");
 
       // Submit 'feedbackForm' and save it in Google Sheets.
       formController.submitForm(feedbackForm, (String response) {
-        print("Response: $response");
-        if (response == FormController.status_success) {
+        if (kDebugMode) {
+          print("Response: $response");
+        }
+        if (response == FormController.STATUS_SUCCESS) {
           // Feedback is saved successfully in Google Sheets.
-          snack("Feedback Submitted");
+          _showSnackbar("Feedback Submitted");
         } else {
           // Error Occurred while saving data in Google Sheets.
-          snack("Error Occurred!");
+          _showSnackbar("Error Occurred!");
         }
       });
     }
   }
 
-  // Method to show snack with 'message'.
-  snack(String message) {
+  // Method to show snack-bar with 'message'.
+  _showSnackbar(String message) {
     final snackBar = SnackBar(content: Text(message));
-    _scaffoldKey.currentState!.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter something here to display on snack-bar")));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      resizeToAvoidBottomInset: false,
+      key: _scaffoldKey, resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.detail),
       ),
       body: Center(
         child: Column(
@@ -97,7 +99,7 @@ class _LoginScreenState extends State<detail_screen> {
                       TextFormField(
                         controller: emailController,
                         validator: (value) {
-                          if (!value!.contains("@")) {
+                          if (value!.contains("@")) {
                             return 'Enter Valid Email';
                           }
                           return null;
@@ -137,11 +139,10 @@ class _LoginScreenState extends State<detail_screen> {
                   ),
                 )
             ),
-            RaisedButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed:_submitForm,
+            ElevatedButton(
+              onPressed: () { _submitForm(); },
               child: const Text('Submit Feedback'),
+              style: ElevatedButton.styleFrom(primary: const Color(0x00000000)),
             ),
           ],
         ),
