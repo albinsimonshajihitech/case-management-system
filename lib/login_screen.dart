@@ -1,4 +1,3 @@
-import 'package:case_management_system/detail_screen.dart';
 import 'package:case_management_system/forget_screen.dart';
 import 'package:case_management_system/sign_up_screen.dart';
 import 'package:case_management_system/utilities/constants.dart';
@@ -6,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'detail_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordLogin = TextEditingController();
 
   final auth = FirebaseAuth.instance;
+
+  get caseapp => null;
+
+  get abc => null;
 
   Widget _buildEmailTF() {
     return Column(
@@ -150,11 +155,12 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () async {
           try {
+            // ignore: non_constant_identifier_names
             final User = await auth.signInWithEmailAndPassword(
                 email: emailLogin.text, password: passwordLogin.text);
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) => DetailScreen(key: , detail: '')));
+                    builder: (context) => DetailScreen(abc: abc, caseapp: caseapp)));
           } catch (e) {
             if (kDebugMode) {
               print(e);

@@ -4,9 +4,9 @@ import 'controller/form_controller.dart';
 import 'model/form.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({required Key key, required this.detail}) : super(key: key);
+  const DetailScreen({required Key abc, required this.caseapp}) : super(key: abc);
 
-  final String detail;
+  final String caseapp;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<DetailScreen> {
     return Scaffold(
       key: _scaffoldKey, resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(widget.detail),
+        title: Text(widget.caseapp),
       ),
       body: Center(
         child: Column(
