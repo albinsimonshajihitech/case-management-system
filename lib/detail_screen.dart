@@ -65,7 +65,6 @@ class _LoginScreenState extends State<DetailScreen> {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter something here to display on snack-bar")));
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,11 +139,7 @@ class _LoginScreenState extends State<DetailScreen> {
                   ),
                 )
             ),
-            ElevatedButton(
-              onPressed: () { _submitForm(); },
-              child: const Text('Submit Feedback'),
-              style: ElevatedButton.styleFrom(primary: const Color(0x00ffffff)),
-            ),
+            ElevatedButton(onPressed: _submitForm, child: const Text('submit feedback')),
           ],
         ),
       ),

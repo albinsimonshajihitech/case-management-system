@@ -8,7 +8,7 @@ import '../model/form.dart';
 class FormController {
 
   // Google App Script Web URL.
-  static String url = "script.google.com/macros/s/AKfycbydQomCMstV6fNDhL5-NjJdxdCJrzefnEI39IPbyS3LiotBNNTHGT0AGcmH3ST8XQr9/exec";
+  static String url = ("https://script.google.com/macros/library/d/1vpD7Wv32smmL_7onEV0gWUGKbx5MeO_HAbdKnXBzF7mpWz7DYI4fw9Az/1");
 
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
@@ -20,10 +20,10 @@ class FormController {
   void submitForm(
       FeedbackForm feedbackForm, void Function(String) callback) async {
     try {
-      http.post(Uri.https(url,body!),body: feedbackForm.toJson()).then((response) async {
+      http.post(Uri.http(url,body.toString()),body: feedbackForm.toJson()).then((response) async {
         if (response.statusCode == 302) {
           var url = response.headers['location'];
-          http.get(Uri.https(url!,body!)).then((response) {
+          http.get(Uri.http(url!,body.toString())).then((response) {
             callback(convert.jsonDecode(response.body)['status']);
           });
         } else {
