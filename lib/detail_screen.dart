@@ -1,19 +1,34 @@
 // ignore_for_file: unused_local_variable
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'controller/form_controller.dart';
+import 'feedback_list.dart';
 import 'model/form.dart';
 
+class DetailScreenPage extends StatelessWidget {
+  const DetailScreenPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Detail',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: DetailScreen(title: "User Detail", key: UniqueKey(),));
+  }
+}
+
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  const DetailScreen({required Key key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<DetailScreen> {
-
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
@@ -32,7 +47,7 @@ class _LoginScreenState extends State<DetailScreen> {
   void _submitForm() {
     // Validate returns true if the form is valid, or false
     // otherwise.
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState?.validate != null) {
       // If the form is valid, proceed.
       FeedbackForm feedbackForm = FeedbackForm(
           nameController.text,
@@ -60,17 +75,19 @@ class _LoginScreenState extends State<DetailScreen> {
     }
   }
 
-  // Method to show snack-bar with 'message'.
+  // Method to show snackbar with 'message'.
   _showSnackbar(String message) {
     final snackBar = SnackBar(content: Text(message));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter something here to display on snack-bar")));
+    ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+        content: Text(snackBar.toString())));
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey, resizeToAvoidBottomInset: false,
+      key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        //title: Text(widget.caseapp),
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
@@ -78,8 +95,8 @@ class _LoginScreenState extends State<DetailScreen> {
           children: <Widget>[
             Form(
                 key: _formKey,
-                child:
-                Padding(padding: const EdgeInsets.all(16),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -91,9 +108,7 @@ class _LoginScreenState extends State<DetailScreen> {
                           }
                           return null;
                         },
-                        decoration: const InputDecoration(
-                            labelText: 'Name'
-                        ),
+                        decoration: const InputDecoration(labelText: 'Name'),
                       ),
                       TextFormField(
                         controller: emailController,
@@ -103,16 +118,15 @@ class _LoginScreenState extends State<DetailScreen> {
                           if (!(regex.hasMatch(value!))) {
                             return null;
                           }
+                          return null;
                         },
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                            labelText: 'Email'
-                        ),
+                        decoration: const InputDecoration(labelText: 'Email'),
                       ),
                       TextFormField(
                         controller: mobileNoController,
                         validator: (value) {
-                          if (value!.trim().length != 10) {
+                          if (value.toString().trim().length != 10) {
                             return 'Enter 10 Digit Mobile Number';
                           }
                           return null;
@@ -131,15 +145,31 @@ class _LoginScreenState extends State<DetailScreen> {
                           return null;
                         },
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                            labelText: 'Feedback'
-                        ),
+                        decoration: const InputDecoration(labelText: 'Feedback'),
                       ),
                     ],
                   ),
-                )
+                )),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: const Text('Submit Feedback'),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.blue
+              ),
             ),
-            ElevatedButton(onPressed: _submitForm, child: const Text('submit feedback')),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.red
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FeedbackListScreen(),
+                    ));
+              },
+              child: const Text('View Feedback'),
+            ),
           ],
         ),
       ),
