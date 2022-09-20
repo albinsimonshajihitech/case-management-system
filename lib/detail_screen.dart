@@ -47,7 +47,7 @@ class _LoginScreenState extends State<DetailScreen> {
   void _submitForm() {
     // Validate returns true if the form is valid, or false
     // otherwise.
-    if (_formKey.currentState?.validate != null) {
+    if (_formKey.currentState?.validate () ?? true) {
       // If the form is valid, proceed.
       FeedbackForm feedbackForm = FeedbackForm(
           nameController.text,
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<DetailScreen> {
                       TextFormField(
                         controller: nameController,
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value?.isEmpty ?? true) {
                             return 'Enter Valid Name';
                           }
                           return null;
@@ -113,10 +113,10 @@ class _LoginScreenState extends State<DetailScreen> {
                       TextFormField(
                         controller: emailController,
                         validator: (value) {
-                          Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = RegExp(pattern.toString());
-                          if (!(regex.hasMatch(value!))) {
-                            return null;
+                          bool isPhoneNoValid(String? value) {
+                            if (value == null) return false;
+                            final regExp = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+                            return regExp.hasMatch(value);
                           }
                           return null;
                         },
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<DetailScreen> {
                       TextFormField(
                         controller: mobileNoController,
                         validator: (value) {
-                          if (value.toString().trim().length != 10) {
+                          if (value?.trim().length != 10) {
                             return 'Enter 10 Digit Mobile Number';
                           }
                           return null;
@@ -139,7 +139,7 @@ class _LoginScreenState extends State<DetailScreen> {
                       TextFormField(
                         controller: feedbackController,
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value?.isEmpty ?? true) {
                             return 'Enter Valid Feedback';
                           }
                           return null;
