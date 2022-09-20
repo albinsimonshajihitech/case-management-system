@@ -41,10 +41,7 @@ class FormController {
   /// Async function which loads feedback from endpoint URL and returns List.
   Future<List<FeedbackForm>> getFeedbackList() async {
     return await http.get(Uri.parse(URL)).then((response) {
-      var jsonFeedback = convert.json.decode(response.body).toList();
-      if (kDebugMode) {
-        print(response.body);
-      }
+      var jsonFeedback = convert.jsonDecode(response.body).toList();
       return jsonFeedback.map((json) => FeedbackForm.fromJson(json)).toList();
     });
   }

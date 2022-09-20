@@ -47,7 +47,7 @@ class _LoginScreenState extends State<DetailScreen> {
   void _submitForm() {
     // Validate returns true if the form is valid, or false
     // otherwise.
-    if (_formKey.currentState?.validate () ?? true) {
+    if (_formKey.currentState?.validate() ?? true) {
       // If the form is valid, proceed.
       FeedbackForm feedbackForm = FeedbackForm(
           nameController.text,
