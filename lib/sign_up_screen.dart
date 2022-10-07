@@ -142,9 +142,11 @@ class _SignupScreenState extends State<SignupScreen> {
           try {
             final newUser = await _auth.createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
-            Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => const LoginScreen()));
+            if(newUser.user!.emailVerified) {
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => const LoginScreen()));
+            }
           } catch (e) {
             if (kDebugMode) {
               print('not a user');

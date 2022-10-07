@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:case_management_system/mini.dart';
 
-import 'detail_screen.dart';
+//import 'detail_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -155,13 +156,14 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () async {
           try {
-            // ignore: non_constant_identifier_names
-            final User = await auth.signInWithEmailAndPassword(
+            final user = await auth.signInWithEmailAndPassword(
                 email: emailLogin.text, password: passwordLogin.text);
+            if(user.user!.emailVerified){
             Navigator.push(context,
                 MaterialPageRoute(
-                    builder: (context) =>  DetailScreen(title: '', key: UniqueKey(),)));
-          } catch (e) {
+                   // builder: (context) =>  DetailScreen(title: '', key: UniqueKey(),)));
+                builder: (context) => mini()));
+          }} catch (e) {
             if (kDebugMode) {
               print(e);
             }
