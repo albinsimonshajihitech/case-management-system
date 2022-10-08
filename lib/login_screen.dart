@@ -1,5 +1,4 @@
 import 'package:case_management_system/forget_screen.dart';
-//import 'package:case_management_system/google%20auth/screens/main_screens/home_screen.dart';
 import 'package:case_management_system/sign_up_screen.dart';
 import 'package:case_management_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -247,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           _buildSocialBtn(
             // ignore: avoid_print
-                () => print('Logoin with google') ,
+                () => print('Login with Google'),
             const AssetImage(
               'assets/logos/google.jpg',
             ),
