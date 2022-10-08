@@ -121,7 +121,7 @@ packages:
     source: hosted
     version: "4.0.0"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -204,7 +204,7 @@ packages:
       name: googleapis
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "8.1.0"
   googleapis_auth:
     dependency: transitive
     description:
@@ -218,7 +218,7 @@ packages:
       name: gsheets
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.2"
+    version: "0.4.2"
   http:
     dependency: "direct main"
     description:

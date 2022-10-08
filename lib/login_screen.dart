@@ -156,14 +156,13 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () async {
           try {
-            final user = await auth.signInWithEmailAndPassword(
+            final UserCredential user = await auth.signInWithEmailAndPassword(
                 email: emailLogin.text, password: passwordLogin.text);
-            if(user.user!.emailVerified){
             Navigator.push(context,
                 MaterialPageRoute(
                    // builder: (context) =>  DetailScreen(title: '', key: UniqueKey(),)));
                 builder: (context) => mini()));
-          }} catch (e) {
+          } catch (e) {
             if (kDebugMode) {
               print(e);
             }
