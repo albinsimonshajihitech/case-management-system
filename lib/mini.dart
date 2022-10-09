@@ -8,7 +8,8 @@ import 'package:case_management_system/ui/app.dart';
   final provider = GoogleSheetsProvider(credentials);
 
   /// Initialize provider
-  provider.initializeForWorksheet(sheetId, worksheetTitle);
+  provider.initializeForWorksheet(sheetId, worksheetOne);
+  provider.initializeForWorksheet(sheetId, worksheetTwe);
 
   runApp(SheetsApp(
     provider: provider,

@@ -5,9 +5,10 @@ import 'dart:convert' as convert;
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/form.dart';
+import '../model/user_form.dart';
 
-/// FormController is a class which does work of saving FeedbackForm in Google Sheets using
+
+/// FormController is a class which does work of saving UserdetailForm in Google Sheets using
 /// HTTP GET request on Google App Script Web URL and parses response and sends result callback.
 class FormController {
   // Google App Script Web URL.
@@ -16,12 +17,12 @@ class FormController {
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
 
-  /// Async function which saves feedback, parses [feedbackForm] parameters
+  /// Async function which saves userdetail, parses [userdetailForm] parameters
   /// and sends HTTP GET request on [URL]. On successful response, [callback] is called.
   void submitForm(
-      FeedbackForm feedbackForm, void Function(String) callback) async {
+      UserdetailForm userdetailForm, void Function(String) callback) async {
     try {
-      await http.post(Uri.parse(URL), body: feedbackForm.toJson()).then((response) async {
+      await http.post(Uri.parse(URL), body: userdetailForm.toJson()).then((response) async {
         if (response.statusCode == 200) {
           var url = response.headers['location'];
           await http.get(Uri.parse(URL)).then((response) {
@@ -38,11 +39,11 @@ class FormController {
     }
   }
 
-  /// Async function which loads feedback from endpoint URL and returns List.
-  Future<List<FeedbackForm>> getFeedbackList() async {
+  /// Async function which loads userdetail from endpoint URL and returns List.
+  Future<List<UserdetailForm>> getUserdetailList() async {
     return await http.get(Uri.parse(URL)).then((response) {
-      var jsonFeedback = convert.jsonDecode(response.body).toList();
-      return jsonFeedback.map((json) => FeedbackForm.fromJson(json)).toList();
+      var jsonUserdetail = convert.jsonDecode(response.body).toList();
+      return jsonUserdetail.map((json) => UserdetailForm.fromJson(json)).toList();
     });
   }
 }

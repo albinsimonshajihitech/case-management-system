@@ -2,8 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'controller/form_controller.dart';
-import 'feedback_list.dart';
-import 'model/form.dart';
+import 'userdetail_list.dart';
+import 'model/user_form.dart';
 
 class DetailScreenPage extends StatelessWidget {
   const DetailScreenPage({Key? key}) : super(key: key);
@@ -41,32 +41,32 @@ class _LoginScreenState extends State<DetailScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController mobileNoController = TextEditingController();
-  TextEditingController feedbackController = TextEditingController();
+  TextEditingController userdetailController = TextEditingController();
 
-  // Method to Submit Feedback and save it in Google Sheets
+  // Method to Submit Userdetail and save it in Google Sheets
   void _submitForm() {
     // Validate returns true if the form is valid, or false
     // otherwise.
     if (_formKey.currentState?.validate() ?? true) {
       // If the form is valid, proceed.
-      FeedbackForm feedbackForm = FeedbackForm(
+      UserdetailForm userdetailForm = UserdetailForm(
           nameController.text,
           emailController.text,
           mobileNoController.text,
-          feedbackController.text);
+          userdetailController.text);
 
       FormController formController = FormController();
 
-      _showSnackbar("Submitting Feedback");
+      _showSnackbar("Submitting Userdetail");
 
-      // Submit 'feedbackForm' and save it in Google Sheets.
-      formController.submitForm(feedbackForm, (String response) {
+      // Submit 'userdetailForm' and save it in Google Sheets.
+      formController.submitForm(userdetailForm, (String response) {
         if (kDebugMode) {
           print("Response: $response");
         }
         if (response == FormController.STATUS_SUCCESS) {
-          // Feedback is saved successfully in Google Sheets.
-          _showSnackbar("Feedback Submitted");
+          // Userdetail is saved successfully in Google Sheets.
+          _showSnackbar("Userdetail Submitted");
         } else {
           // Error Occurred while saving data in Google Sheets.
           _showSnackbar("Error Occurred!");
@@ -137,22 +137,22 @@ class _LoginScreenState extends State<DetailScreen> {
                         ),
                       ),
                       TextFormField(
-                        controller: feedbackController,
+                        controller: userdetailController,
                         validator: (value) {
                           if (value?.isEmpty ?? true) {
-                            return 'Enter Valid Feedback';
+                            return 'Enter Valid Userdetail';
                           }
                           return null;
                         },
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(labelText: 'Feedback'),
+                        decoration: const InputDecoration(labelText: 'Userdetail'),
                       ),
                     ],
                   ),
                 )),
             ElevatedButton(
               onPressed: _submitForm,
-              child: const Text('Submit Feedback'),
+              child: const Text('Submit Userdetail'),
               style: ElevatedButton.styleFrom(
                   primary: Colors.blue
               ),
@@ -165,10 +165,10 @@ class _LoginScreenState extends State<DetailScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const FeedbackListScreen(),
+                      builder: (context) => const UserdetailListScreen(),
                     ));
               },
-              child: const Text('View Feedback'),
+              child: const Text('View Userdetail'),
             ),
           ],
         ),

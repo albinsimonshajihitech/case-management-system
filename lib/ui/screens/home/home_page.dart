@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:case_management_system/models/house_entity.dart';
+import 'package:case_management_system/models/user_entity.dart';
 import 'package:case_management_system/providers/sheets/google_sheets_provider.dart';
 import 'package:case_management_system/ui/app.dart';
 
@@ -15,15 +15,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<List<HouseEntity>> get houses => widget.provider.getHouses();
+  Future<List<UserEntity>> get houses => widget.provider.getUser();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Houses'),
+        title: const Text('user details'),
       ),
-      body: FutureBuilder<List<HouseEntity>>(
+      body: FutureBuilder<List<UserEntity>>(
         future: houses,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -38,11 +38,13 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(24.0),
             child: ListView.builder(
                 itemCount: houses.length,
-                itemBuilder: (context, index) => HouseCard(
+                itemBuilder: (context, index) => UserDetail(
                       name: houses[index].name,
-                      address: houses[index].address,
+                      age: houses[index].age,
+                      phone: houses[index].phone,
+                      email: houses[index].email,
                       onDelete: () async {
-                        await widget.provider.deleteHouse(index);
+                        await widget.provider.deleteUser(index);
 
                         /// should call again the getter
                         setState(() {});
@@ -65,14 +67,18 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HouseCard extends StatelessWidget {
+class UserDetail extends StatelessWidget {
   final String name;
-  final String address;
+  final String age;
+  final String phone;
+  final String email;
   final VoidCallback onDelete;
 
-  const HouseCard({
+  const UserDetail({
     required this.name,
-    required this.address,
+    required this.age,
+    required this.phone,
+    required this.email,
     required this.onDelete,
     Key? key,
   }) : super(key: key);
