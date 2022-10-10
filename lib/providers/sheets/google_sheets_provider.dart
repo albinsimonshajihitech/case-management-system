@@ -28,8 +28,8 @@ class GoogleSheetsProvider {
 
   Future<List<CrpcEntity>> getCrpcform() async {
 
-    final values = (await _worksheettwo.values.allRows()).skip(1).toList();
-    return values.map((crp) => CrpcEntity.fromSheets(crp)).toList();
+    final crp = (await _worksheettwo.values.allRows()).skip(1).toList();
+    return crp.map((crp) => CrpcEntity.fromSheets(crp)).toList();
   }
 
   Future<bool> deleteUser(int index) {
@@ -42,4 +42,12 @@ class GoogleSheetsProvider {
   Future<bool> addUser(String name, String age, String phone, String email) {
     return _worksheetone.values.appendRow([name, age, phone, email]);
   }
+
+  Future<bool> addCrpcform(String court_name, String case_type, String case_no, String case_year, String petitioner_name, String petitioner_paternal_title, String petitioner_paternal_name, String petitioner_address, String respondent_name, String respondent_address, String date) {
+    return _worksheettwo.values.appendRow([court_name, case_type, case_no, case_year, petitioner_name, petitioner_paternal_title, petitioner_paternal_name, petitioner_address, respondent_name, respondent_address, date]);
+  }
+
+
 }
+
+   

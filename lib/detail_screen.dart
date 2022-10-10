@@ -152,7 +152,7 @@ class _LoginScreenState extends State<DetailScreen> {
                 )),
             ElevatedButton(
               onPressed: _submitForm,
-              child: const Text('Submit Userdetail'),
+              child: const Text('Submit Userm Detail'),
               style: ElevatedButton.styleFrom(
                   primary: Colors.blue
               ),

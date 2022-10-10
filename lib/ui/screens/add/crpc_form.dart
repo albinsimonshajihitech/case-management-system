@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:case_management_system/providers/sheets/google_sheets_provider.dart';
 
-class Formone extends StatefulWidget {
-  final GoogleSheetsProvider provider;
-  const Formone({required this.provider, Key? key}) : super(key: key);
+class Crpcform extends StatefulWidget {
+  final GoogleSheetsProvider providing;
+  const Crpcform({required this.providing, Key? key}) : super(key: key);
 
   @override
-  _FormoneState createState() => _FormoneState();
+  _CrpcformState createState() => _CrpcformState();
+}
 
-  class _FormoneState extends State<Formone> {
+  class _CrpcformState extends State<Crpcform> {
   final TextEditingController _courtnameController = TextEditingController();
   final TextEditingController _casetypeController = TextEditingController();
   final TextEditingController _casenumberController = TextEditingController();
@@ -153,8 +154,6 @@ class Formone extends StatefulWidget {
               height: 12.0,
               ),
 
-
-
   MaterialButton(
                   child: const Text(
                     'Add Case Details',
@@ -162,7 +161,7 @@ class Formone extends StatefulWidget {
                   ),
                   color: Theme.of(context).primaryColor,
                   onPressed: () async {
-                    await widget.provider.addDetail(
+                    await widget.providing.addCrpcform(
                         _courtnameController.text, _casetypeController.text,_casenumberController.text,_caseyearController.text,_petitionernameController.text,_petitionerpaternaltitleController.text,_petitionerpaternalnameController.text,_paternaladdressController.text,_respondentnameController.text,_respondentaddressController.text,_dateController.text);
                     Navigator.of(context).pop();
                   }),
@@ -172,5 +171,4 @@ class Formone extends StatefulWidget {
       ),
     );
   }
-}
 }

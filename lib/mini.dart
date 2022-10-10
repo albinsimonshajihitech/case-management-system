@@ -6,13 +6,14 @@ import 'package:case_management_system/ui/app.dart';
  mini()
 {
   final provider = GoogleSheetsProvider(credentials);
+  final providing = GoogleSheetsProvider(credentials);
 
   /// Initialize provider
   provider.initializeForWorksheet(sheetId, worksheetOne);
-  provider.initializeForWorksheet(sheetId, worksheetTwe);
+  providing.initializeForWorksheet(sheetId, worksheetTwe);
 
   runApp(SheetsApp(
-    provider: provider,
+    provider: provider, providing: providing,
   ));
 }
 ///

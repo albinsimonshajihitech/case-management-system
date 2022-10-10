@@ -9,7 +9,7 @@ class UserdetailListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Userdetail Responses',
+        title: 'User Detail Responses',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -57,7 +57,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
                 const Icon(Icons.person),
                 Expanded(
                   child: Text(
-                      "${userdetailItems[index].name} (${userdetailItems[index].email})"),
+                      "${userdetailItems[index].name} (${userdetailItems[index].age})"),
                 )
               ],
             ),
@@ -65,7 +65,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
               children: <Widget>[
                 const Icon(Icons.message),
                 Expanded(
-                  child: Text(userdetailItems[index].UserdetailForm),
+                  child: Text(userdetailItems[index].mobileNo),
                 )
               ],
             ),
