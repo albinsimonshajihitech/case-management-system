@@ -39,6 +39,13 @@ class GoogleSheetsProvider {
     return _worksheetone.deleteRow(index + 2);
   }
 
+  Future<bool> deleteCrpc(int index) {
+    /// We add one to the index so that we can:
+    /// 1. Start at index 1
+    /// 2. Skip the first row
+    return _worksheettwo.deleteRow(index + 2);
+  }
+
   Future<bool> addUser(String name, String age, String phone, String email) {
     return _worksheetone.values.appendRow([name, age, phone, email]);
   }

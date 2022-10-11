@@ -1,7 +1,7 @@
 import 'package:case_management_system/model/user_form.dart';
 import 'package:flutter/material.dart';
 
-import 'controller/form_controller.dart';
+import 'controller/user_form_controller.dart';
 
 class UserdetailListScreen extends StatelessWidget {
   const UserdetailListScreen({Key? key}) : super(key: key);
@@ -57,7 +57,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
                 const Icon(Icons.person),
                 Expanded(
                   child: Text(
-                      "${userdetailItems[index].name} (${userdetailItems[index].age})"),
+                      "(${userdetailItems[index].name}) (${userdetailItems[index].age}) (${userdetailItems[index].mobileNo} (${userdetailItems[index].email})"),
                 )
               ],
             ),
@@ -65,7 +65,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
               children: <Widget>[
                 const Icon(Icons.message),
                 Expanded(
-                  child: Text(userdetailItems[index].mobileNo),
+                  child: Text(userdetailItems[index].name),
                 )
               ],
             ),
