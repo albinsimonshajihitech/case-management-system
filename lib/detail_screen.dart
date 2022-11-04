@@ -39,9 +39,9 @@ class _LoginScreenState extends State<DetailScreen> {
 
   // TextField Controllers
   TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   TextEditingController mobileNoController = TextEditingController();
-  TextEditingController userdetailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   // Method to Submit Userdetail and save it in Google Sheets
   void _submitForm() {
@@ -51,9 +51,9 @@ class _LoginScreenState extends State<DetailScreen> {
       // If the form is valid, proceed.
       UserdetailForm userdetailForm = UserdetailForm(
           nameController.text,
-          emailController.text,
+          ageController.text,
           mobileNoController.text,
-          userdetailController.text);
+          emailController.text);
 
       FormController formController = FormController();
 
@@ -110,19 +110,18 @@ class _LoginScreenState extends State<DetailScreen> {
                         },
                         decoration: const InputDecoration(labelText: 'Name'),
                       ),
-                      TextFormField(
-                        controller: emailController,
-                        validator: (value) {
-                          bool isPhoneNoValid(String? value) {
-                            if (value == null) return false;
-                            final regExp = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
-                            return regExp.hasMatch(value);
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(labelText: 'Email'),
-                      ),
+                  TextFormField(
+                    controller: ageController,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Enter Valid Age';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.multiline,
+                    decoration: const InputDecoration(labelText: 'Age'),
+                  )
+                      ,
                       TextFormField(
                         controller: mobileNoController,
                         validator: (value) {
@@ -137,15 +136,17 @@ class _LoginScreenState extends State<DetailScreen> {
                         ),
                       ),
                       TextFormField(
-                        controller: userdetailController,
+                        controller: emailController,
                         validator: (value) {
-                          if (value?.isEmpty ?? true) {
-                            return 'Enter Valid Userdetail';
+                          bool isPhoneNoValid(String? value) {
+                            if (value == null) return false;
+                            final regExp = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+                            return regExp.hasMatch(value);
                           }
                           return null;
                         },
-                        keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(labelText: 'Userdetail'),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(labelText: 'Email'),
                       ),
                     ],
                   ),

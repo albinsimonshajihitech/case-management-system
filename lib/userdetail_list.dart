@@ -57,7 +57,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
                 const Icon(Icons.person),
                 Expanded(
                   child: Text(
-                      "(${userdetailItems[index].name}) (${userdetailItems[index].age}) (${userdetailItems[index].mobileNo} (${userdetailItems[index].email})"),
+                      "${userdetailItems[index].name} (${userdetailItems[index].age})"),
                 )
               ],
             ),
@@ -65,7 +65,7 @@ class _UserdetailListPageState extends State<UserdetailListPage> {
               children: <Widget>[
                 const Icon(Icons.message),
                 Expanded(
-                  child: Text(userdetailItems[index].name),
+                  child: Text(userdetailItems[index].email),
                 )
               ],
             ),

@@ -20,7 +20,7 @@ class _AddPageState extends State<AddPage> {
     final size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add House"),
+        title: const Text("User Detail"),
       ),
       body: Center(
         child: SizedBox(

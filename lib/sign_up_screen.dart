@@ -134,10 +134,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
-      // ignore: deprecated_member_use
-      child: RaisedButton(
-        elevation: 5.0,
-        // ignore: avoid_print
+      child: ElevatedButton(
         onPressed: () async{
           try {
             final newUser = await _auth.createUserWithEmailAndPassword(
@@ -153,12 +150,6 @@ class _SignupScreenState extends State<SignupScreen> {
             }
           }
         },
-        padding:const EdgeInsets.all(15.0),
-        shape:
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
-        ),
-        color:Colors.white,
         child: const Text(
           'SIGN UP',
           style: TextStyle(

@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   get abc => null;
 
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,15 +153,14 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       // ignore: deprecated_member_use
-      child: RaisedButton(
-        elevation: 5.0,
+      child: ElevatedButton(
         onPressed: () async {
           try {
             final UserCredential user = await auth.signInWithEmailAndPassword(
                 email: emailLogin.text, password: passwordLogin.text);
             Navigator.push(context,
                 MaterialPageRoute(
-                   // builder: (context) =>  DetailScreen(title: '', key: UniqueKey(),)));
+                   //builder: (context) =>  DetailScreen(title: '', key: UniqueKey(),)));
                 builder: (context) => mini()));
           } catch (e) {
             if (kDebugMode) {
@@ -168,11 +168,6 @@ class _LoginScreenState extends State<LoginScreen> {
             }
           }
         },
-        padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
-        ),
-        color: Colors.white,
         child: const Text(
           'LOGIN',
           style: TextStyle(

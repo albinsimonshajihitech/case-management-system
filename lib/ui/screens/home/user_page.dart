@@ -28,7 +28,9 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
+
               child: CircularProgressIndicator(),
+
             );
           }
 

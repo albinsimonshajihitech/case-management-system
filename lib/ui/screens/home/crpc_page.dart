@@ -3,9 +3,9 @@ import 'package:case_management_system/models/crpc_form_entity.dart';
 import 'package:case_management_system/providers/sheets/google_sheets_provider.dart';
 import 'package:case_management_system/ui/app.dart';
 
-class HomePage extends StatefulWidget {
+class CrpcPage extends StatefulWidget {
   final GoogleSheetsProvider providing;
-  const HomePage({
+  const CrpcPage({
     required this.providing,
     Key? key,
   }) : super(key: key);
@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<CrpcPage> {
   Future<List<CrpcEntity>> get Crpc => widget.providing.getCrpcform();
 
   @override
