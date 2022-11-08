@@ -21,7 +21,7 @@ class _HomePageState extends State<CrpcPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crpc Forms'),
+        title: const Text('482 Quashing Petition'),
       ),
       body: FutureBuilder<List<CrpcEntity>>(
         future: Crpc,
